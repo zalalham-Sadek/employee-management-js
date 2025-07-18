@@ -20,19 +20,19 @@
             <h2>Employee Management Dashbord</h2>
         </div>
         <div class="section-body mt-2">
-            <form action="" method="post" >
+            <form action="" method="post" id="EmployeeForm">
                 <h2>Add Employee</h2>
 
                 <div class="form d-flex gap-2 mt-2 ">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <div class="message">
+                        <input type="text" id="name" name="name" placeholder="Name">
+                        <div class="name-message">
                             <span class=""></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="role" placeholder="role" required>
-                        <div class="message">
+                        <input type="text" id="role" name="role" placeholder="role">
+                        <div class="role-message">
                             <span class=""></span>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <option value="on leave">on leave</option>
                             <option value="Terminated">terminated</option>
                         </select>
-                        <div class="message">
+                        <div class=" status-message">
                             <span class=""></span>
                         </div>
                     </div>
@@ -51,6 +51,9 @@
                 </div>
                 <div class="submit mt-2">
                     <button type="submit" class="btn btn-primary">Add Employee</button>
+                    <div class=" message">
+                        <span class=""></span>
+                    </div>
                 </div>
             </form>
 
@@ -61,22 +64,24 @@
                 <div class="list-head">
                     <h2>Employee List</h2>
                     <div class="trash">
-                        <a href="" class="btn btn-outline-secondary">show trash</a>
+                        <button  class="btn btn-outline-secondary " id="show-trash">show trash</button>
                     </div>
                 </div>
 
                 <table class="table mt-2">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Role</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="employee-list">
-                        <!-- Employee list will be populated here -->
-                        <tr>
+                    <tbody id="employee-list"></tbody>
+                    <!-- Employee list will be populated here -->
+                    <!-- <tr>
+
                             <td>John Doe</td>
                             <td>Software Engineer</td>
                             <td>Active</td>
@@ -86,8 +91,8 @@
                                 <a class="btn btn-danger "><i class="fa-solid fa-trash"></i></a>
                                </div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                    <!-- <tr>
                             <td>Jane Smith</td>
                             <td>Project Manager</td>
                             <td>On Leave</td>
@@ -97,18 +102,42 @@
                                 <a class="btn btn-danger "><i class="fa-solid fa-trash"></i></a>
                                </div>
                             </td>
-                        </tr>
-                    </tbody>
+                        </tr> -->
+
                 </table>
 
 
 
+            </div>
+
+
+            <!-- Trash Modal -->
+<div id="trash-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Trashed Employees</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="trash-list">
+        <!-- Trashed employees go here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
         </div>
-    </div>
 
 
 
-    <script src="js/main.js"></script>
+        <script src="js/main.js"></script>
 </body>
 
 </html>
