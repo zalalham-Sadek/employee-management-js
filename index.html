@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee management system</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <div class="dashbord container d-flex  justify-content-center  flex-column">
+        <div class="section-header">
+            <h2>Employee Management Dashbord</h2>
+        </div>
+        <div class="section-body mt-2">
+            <form action="" method="post" >
+                <h2>Add Employee</h2>
+
+                <div class="form d-flex gap-2 mt-2 ">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <div class="message">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="role" placeholder="role" required>
+                        <div class="message">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select name="status" id="status">
+                            <option value="">status</option>
+                            <option value="active">active</option>
+                            <option value="on leave">on leave</option>
+                            <option value="Terminated">terminated</option>
+                        </select>
+                        <div class="message">
+                            <span class=""></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="submit mt-2">
+                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                </div>
+            </form>
+
+
+
+            <div class="employee-list mt-4">
+
+                <div class="list-head">
+                    <h2>Employee List</h2>
+                    <div class="trash">
+                        <a href="" class="btn btn-outline-secondary">show trash</a>
+                    </div>
+                </div>
+
+                <table class="table mt-2">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-list">
+                        <!-- Employee list will be populated here -->
+                        <tr>
+                            <td>John Doe</td>
+                            <td>Software Engineer</td>
+                            <td>Active</td>
+                            <td>
+                               <div class="d-flex action">
+                                 <a class="btn-primary btn "><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-danger "><i class="fa-solid fa-trash"></i></a>
+                               </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>Project Manager</td>
+                            <td>On Leave</td>
+                            <td>
+                               <div class="d-flex action">
+                                 <a class="btn-primary btn "><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-danger "><i class="fa-solid fa-trash"></i></a>
+                               </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+        </div>
+    </div>
+
+
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
