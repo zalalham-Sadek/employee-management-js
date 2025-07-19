@@ -2,9 +2,11 @@ const empForm = document.getElementById('EmployeeForm');
 const empName = document.getElementById('name');
 const empRole = document.getElementById('role');
 const empStatus = document.getElementById('status');
+const empSalary = document.getElementById('salary');
 const empMessageName = document.querySelector('.name-message span');
 const empMessageRole = document.querySelector('.role-message span');
 const empMessageStatus = document.querySelector('.status-message span');
+const empMessageSalary = document.querySelector('.salary-message span');
 const employees = [];
 const trashEmps = [];
 const trashbtn = document.getElementById('show-trash');
@@ -16,6 +18,7 @@ empForm.addEventListener('submit', function (event) {
     const name = empName.value.trim();
     const role = empRole.value.trim();
     const status = empStatus.value.trim();
+    const salary = empSalary.value.trim();
 
     // Clear previous messages
     empMessageName.textContent = '';
@@ -62,6 +65,25 @@ empForm.addEventListener('submit', function (event) {
         empMessageStatus.classList.add('error');
         isValid = false;
     }
+    // Salary validation
+    if (salary === '') {
+        empMessageSalary.textContent = 'Salary is required';
+        empMessageSalary.classList.add('error');
+        isValid = false;
+
+    }
+    else if (isNaN(salary)) {
+        empMessageSalary.textContent = 'Salary must be a number';
+        empMessageSalary.classList.add('error');
+        isValid = false;
+
+    }
+    
+    else if ( salary <= 0) {
+        empMessageSalary.textContent = 'Salary must be a positive number';
+        empMessageSalary.classList.add('error');
+        isValid = false;
+    }
 
     // Success
     if (isValid) {
@@ -73,6 +95,8 @@ empForm.addEventListener('submit', function (event) {
         employees.push({
             name: name,
             role: role,
+            salary: salary,
+            bonus: 0,
             status: status
         });
 
@@ -106,6 +130,7 @@ trashbtn.addEventListener('click', function () {
                 <td>${index + 1}</td>
                 <td>${emp.name}</td>
                 <td>${emp.role}</td>
+                <td>${emp.salary}</td>
                 <td>${emp.status}</td>
                 <td>
                     <div class="d-flex action">
@@ -126,15 +151,28 @@ trashbtn.addEventListener('click', function () {
 });
 
 
-document.querySelector('.close-btn').addEventListener('click', () => {
-    document.getElementById('trash-modal').style.display = 'none';
+// Close buttons for both modals
+document.querySelectorAll('.close-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        document.getElementById('trash-modal').style.display = 'none';
+        document.getElementById('bonus-modal').style.display = 'none';
+    });
 });
+
+// Close modals when clicking outside
 window.addEventListener('click', (event) => {
-    const modal = document.getElementById('trash-modal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
+    const trashModal = document.getElementById('trash-modal');
+    const bonusModal = document.getElementById('bonus-modal');
+
+    if (event.target === trashModal) {
+        trashModal.style.display = 'none';
+    }
+
+    if (event.target === bonusModal) {
+        bonusModal.style.display = 'none';
     }
 });
+
 function displayEmployees() {
     // Update employee table
     empTable.innerHTML = '';
@@ -144,10 +182,13 @@ function displayEmployees() {
                 <td>${index + 1}</td>
                 <td>${emp.name}</td>
                 <td>${emp.role}</td>
+                <td>${emp.salary}</td>
+                <td>${emp.bonus}</td>
                 <td><span style="background-color:${setBackgroundColor(emp.status)};padding:0px 10px; border-radius:20px">${emp.status}</span></td>
                 <td> <div class="d-flex action">
                                  <a class="btn-primary btn  " onClick = editEmployee(${index}) ><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a class="btn btn-danger "   onClick=deleteEmployee(${index})   ><i class="fa-solid fa-trash"></i></a>
+                                <a class="btn btn-primary "   onClick=setBonus(${index})   ><i class="fa-solid fa-add"></i></a>
                                </div></td>
             `;
         empTable.appendChild(row);
@@ -181,6 +222,28 @@ function editEmployee(index) {
     }
 }
 
+function setBonus(index) {
+    if (index >= 0 && index < employees.length){
+        const emp = employees[index];
+        document.getElementById('bonus-modal').style.display = 'block';
+
+        document.getElementById('bonus-amount').value = emp.bonus || 0;
+        document.getElementById('bonus-form').addEventListener('submit', function (){
+            event.preventDefault();
+            const bonusAmount = document.getElementById('bonus-amount').value;
+            if (bonusAmount && !isNaN(bonusAmount) && bonusAmount >= 0 ){
+                emp.bonus = emp.salary * ( parseFloat( bonusAmount) / 100);
+                
+                document.getElementById('bonus-modal').style.display = 'none';
+                displayEmployees();
+                console.log(`Bonus of ${emp.bonus} applied to ${emp.name}`);
+            }
+        })
+
+
+    }
+}
+
 function restoreEmployee(index) {
     if (index >= 0 && index < trashEmps.length) {
         const [restoredEmp] = trashEmps.splice(index, 1);
@@ -207,6 +270,7 @@ function permanentlyDeleteEmployee(index) {
                 <td>${index + 1}</td>
                 <td>${emp.name}</td>
                 <td>${emp.role}</td>
+                <td>${emp.salary}</td>
                 <td><span style="background-color:${setBackgroundColor(emp.status)};padding:0px 10px; border-radius:20px">${emp.status}</span></td>
                 <td>
                     <div class="d-flex action">

@@ -37,6 +37,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <input type="text" id="salary" name="salary" placeholder="salary">
+                        <div class="salary-message">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <select name="status" id="status">
                             <option value="">status</option>
                             <option value="active">active</option>
@@ -68,12 +74,15 @@
                     </div>
                 </div>
 
-                <table class="table mt-2">
+                <div class="table-responsive">
+                                    <table class="table mt-2">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Role</th>
+                            <th>Salary</th>
+                            <th>Bonus</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -105,6 +114,7 @@
                         </tr> -->
 
                 </table>
+                </div>
 
 
 
@@ -116,12 +126,14 @@
                 <div class="modal-content">
                     <span class="close-btn">&times;</span>
                     <h2>Trashed Employees</h2>
-                    <table>
+                    <div class="table-responsive">
+                        <table>
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Role</th>
+                                <th>Salary</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -130,8 +142,30 @@
                             <!-- Trashed employees go here -->
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
+
+
+            <div id="bonus-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>add bonus to Employee</h2>
+                    <form id="bonus-form">
+                        <div class="form-group">
+                            <input type="text" id="bonus-amount" name="bonus-amount" placeholder="Bonus Amount">
+                            <div class="bonus-message">
+                                <span class=""></span>
+                            </div>
+                            <div class="submit mt-2">
+                                <button type="submit" class="btn btn-primary">Apply bonus</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
 
         </div>
 
