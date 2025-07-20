@@ -163,6 +163,17 @@ input[type="text"],select{
       gap: 3px;
 }
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+}
+
+.table-responsive table {
+  min-width: 600px; /* or however wide your table needs to be */
+}
+
+
 .modal {
     display: none;
     position: fixed;
