@@ -65,13 +65,40 @@
 
 
 
-            <div class="employee-list mt-4">
+            <div class="employee-list mt-4 ">
 
                 <div class="list-head">
                     <h2>Employee List</h2>
                     <div class="trash">
-                        <button class="btn btn-outline-secondary " id="show-trash">show trash</button>
+                        <button class="btn btn-outline-secondary " id="show-trash">show trash  <i class="fa-solid fa-trash" style="margin-left: 5px;"></i> </button>
                     </div>
+                </div>
+
+                <div class="emp-filter d-flex gap-2 mt-2 form">
+                    <div class="form-group">
+                        <input type="text" id="search" name="search" placeholder="Search by name or role">
+                        <div class="search-message">
+                            <span class=""></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="min-salary" name="min-salary" placeholder="min-salary">
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="max-salary" name="max-salary" placeholder="max-salary">
+                    </div>
+                    <div class="form-group">
+                        <select name="status" id="status-filter">
+                            <option value="all">status</option>
+                            <option value="active">active</option>
+                            <option value="on leave">on leave</option>
+                            <option value="Terminated">terminated</option>
+                        </select>
+                    </div>
+                    
+
                 </div>
 
                 <div class="table-responsive">
@@ -88,6 +115,20 @@
                         </tr>
                     </thead>
                     <tbody id="employee-list"></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <div class="total-salary d-flex" style="float: left;" >
+                                    <p style="margin-right: 10px;">total salary:</p>
+                                    <p id="total"></p>
+                                </div>
+                                <div style="float: right;">
+                                    <button  class="btn btn-outline-secondary" id="delete-emps">delete < = 20,000</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+
                     <!-- Employee list will be populated here -->
                     <!-- <tr>
 
